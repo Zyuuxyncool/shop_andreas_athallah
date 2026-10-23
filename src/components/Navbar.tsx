@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, X, ArrowLeft, Moon, Sun, ShoppingBag, ShieldCheck } from "lucide-react";
+import { Search, X, ArrowLeft, Moon, Sun, ShieldCheck } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 interface NavbarProps {
@@ -22,16 +22,16 @@ export function Navbar({ theme, onToggleTheme, searchQuery, onSearchChange }: Na
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
-      {/* Top Shopee Notification Bar */}
-      <div className="bg-primary/90 text-primary-foreground text-[11px] py-1 px-4 text-center font-medium flex items-center justify-center gap-3">
+      {/* Top Notification Bar */}
+      <div className="bg-primary text-primary-foreground text-[11px] py-1 px-4 text-center font-medium flex items-center justify-center gap-3">
         <span className="inline-flex items-center gap-1">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>Star Seller Resmi Andreas Athallah</span>
+          <span>Toko Digital Resmi Andreas Athallah</span>
         </span>
         <span className="hidden sm:inline">•</span>
-        <span className="hidden sm:inline">Garansi Produk Digital & Pengerjaan Koding Cepat</span>
+        <span className="hidden sm:inline">Produk Digital Legal & Pengerjaan Koding Terpercaya</span>
         <span className="hidden md:inline">•</span>
-        <span className="hidden md:inline">WhatsApp Fast Response: 0857-7330-1211</span>
+        <span className="hidden md:inline">WhatsApp: 0857-7330-1211</span>
       </div>
 
       {/* Main Navigation Bar */}
@@ -45,7 +45,7 @@ export function Navbar({ theme, onToggleTheme, searchQuery, onSearchChange }: Na
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex items-center justify-between gap-3 sm:gap-6">
             
-            {/* Shopee-style Brand Logo */}
+            {/* Brand Logo (Clean, No Star+ Badge) */}
             <a
               href="#"
               className="flex items-center gap-2.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg py-1 px-1"
@@ -54,28 +54,23 @@ export function Navbar({ theme, onToggleTheme, searchQuery, onSearchChange }: Na
                 AA
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-foreground font-extrabold text-base sm:text-lg tracking-tight leading-none">
-                    Andreas<span className="text-primary font-black">Shop</span>
-                  </span>
-                  <span className="px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
-                    Star+
-                  </span>
-                </div>
+                <span className="text-foreground font-extrabold text-base sm:text-lg tracking-tight leading-none">
+                  Andreas<span className="text-primary font-black">Shop</span>
+                </span>
                 <span className="text-[10px] text-muted-foreground font-mono leading-none mt-1">
                   shop.andreas-athallah.web.id
                 </span>
               </div>
             </a>
 
-            {/* Shopee-Style Search Bar (Prominent in Center) */}
+            {/* Search Bar (Prominent in Center) */}
             <div className="flex-1 max-w-xl mx-auto">
               <div className="relative flex items-center">
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => onSearchChange(e.target.value)}
-                  placeholder="Cari produk digital, aktivasi AI, joki Laravel, tugas RPL..."
+                  placeholder="Cari produk digital, aktivasi AI, template web, joki tugas..."
                   className="w-full pl-9 pr-9 py-2 rounded-xl bg-muted/60 border border-border text-foreground text-xs sm:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-all shadow-inner"
                 />
                 <Search className="w-4 h-4 text-muted-foreground absolute left-3 pointer-events-none" />
@@ -122,7 +117,7 @@ export function Navbar({ theme, onToggleTheme, searchQuery, onSearchChange }: Na
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-sm"
               >
                 <SiWhatsapp className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Chat Penjual</span>
+                <span className="hidden sm:inline">Hubungi WA</span>
               </a>
             </div>
 
