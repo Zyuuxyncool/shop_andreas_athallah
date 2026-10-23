@@ -7,9 +7,16 @@ import { TrustGuarantees } from "./components/TrustGuarantees";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { PRODUCTS, ProductCategory, ProductItem } from "./data/products";
+import { CustomSelect, SelectOption } from "./components/CustomSelect";
 import { Code2, Sparkles, LayoutGrid, Search, ArrowUpDown, X, ArrowLeft } from "lucide-react";
 
 type SortOption = "popular" | "price-asc" | "price-desc";
+
+const SORT_OPTIONS: SelectOption<SortOption>[] = [
+  { value: "popular", label: "Rekomendasi" },
+  { value: "price-asc", label: "Harga: Terendah" },
+  { value: "price-desc", label: "Harga: Tertinggi" },
+];
 
 export function App() {
   const [theme, setTheme] = useState<"dark" | "light">(() => {
@@ -177,15 +184,11 @@ export function App() {
                       <span>Urutkan:</span>
                     </span>
 
-                    <select
+                    <CustomSelect
                       value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value as SortOption)}
-                      className="px-2.5 py-1.5 rounded-xl bg-muted/60 border border-border text-foreground text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
-                    >
-                      <option value="popular">Rekomendasi</option>
-                      <option value="price-asc">Harga: Terendah</option>
-                      <option value="price-desc">Harga: Tertinggi</option>
-                    </select>
+                      onChange={setSortBy}
+                      options={SORT_OPTIONS}
+                    />
                   </div>
                 </div>
               </div>
