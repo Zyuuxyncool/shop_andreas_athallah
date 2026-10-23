@@ -114,45 +114,58 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
     onClose();
   };
 
+  useEffect(() => {
+    if (product) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [product]);
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
+    <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-background/80 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
-      {/* Modal Dialog Content */}
-      <div className="relative w-full max-w-lg bg-card border border-border rounded-3xl shadow-2xl overflow-hidden z-10 max-h-[92vh] flex flex-col">
-        
-        {/* ================= STEP 1: FORM PEMESANAN & PILIH METODE BAYAR ================= */}
-        {viewStep === "form" && (
-          <>
-            {/* Header */}
-            <div className="p-5 border-b border-border flex items-start justify-between bg-muted/20">
-              <div className="space-y-0.5">
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Form Pemesanan
-                </span>
-                <h3 className="text-base sm:text-lg font-bold text-foreground">
-                  {product.name}
-                </h3>
-                <p className="text-xs text-muted-foreground font-mono">
-                  {selectedVariant ? selectedVariant.priceLabel : product.priceTag} / unit
-                </p>
+      {/* Modal Alignment Wrapper (Handles the outer scroll) */}
+      <div className="flex min-h-full items-center justify-center p-3 sm:p-6 py-8 sm:py-12">
+        {/* Modal Dialog Card */}
+        <div className="relative w-full max-w-lg bg-card border border-border rounded-3xl shadow-2xl z-10 my-auto overflow-hidden">
+          
+          {/* ================= STEP 1: FORM PEMESANAN & PILIH METODE BAYAR ================= */}
+          {viewStep === "form" && (
+            <>
+              {/* Header */}
+              <div className="p-5 border-b border-border flex items-start justify-between bg-muted/20">
+                <div className="space-y-0.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                    Form Pemesanan
+                  </span>
+                  <h3 className="text-base sm:text-lg font-bold text-foreground">
+                    {product.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground font-mono">
+                    {selectedVariant ? selectedVariant.priceLabel : product.priceTag} / unit
+                  </p>
+                </div>
+
+                <button
+                  onClick={onClose}
+                  className="p-1.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+                  aria-label="Tutup dialog"
+                >
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              <button
-                onClick={onClose}
-                className="p-1.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                aria-label="Tutup dialog"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Form Body */}
-            <form onSubmit={handleProceedOrder} className="overflow-y-auto p-5 sm:p-6 space-y-5 flex-1 pr-2 sm:pr-4">
+              {/* Form Body (Scrolls together with the modal card) */}
+              <form onSubmit={handleProceedOrder} className="p-5 sm:p-6 space-y-5">
               
               {/* Variant Selector (if product has variants) */}
               {product.variants && product.variants.length > 0 && (
@@ -353,7 +366,7 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
 
         {/* ================= STEP 2: MIDTRANS PAYMENT GATEWAY SCREEN ================= */}
         {viewStep === "midtrans_screen" && (
-          <div className="flex flex-col flex-1 overflow-y-auto">
+          <div className="flex flex-col">
             
             {/* Midtrans Header */}
             <div className="p-4 sm:p-5 bg-blue-600 text-white flex items-center justify-between">
@@ -372,7 +385,7 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
             </div>
 
             {/* Midtrans Channel Selector Tabs */}
-            <div className="p-4 sm:p-6 space-y-5 flex-1">
+            <div className="p-4 sm:p-6 space-y-5">
               
               <div className="grid grid-cols-3 gap-2 p-1 bg-muted/60 rounded-xl border border-border">
                 <button
@@ -526,6 +539,7 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
           </div>
         )}
 
+        </div>
       </div>
     </div>
   );
