@@ -46,25 +46,25 @@ export function App() {
   const aiCount = PRODUCTS.filter((p) => p.category === "ai").length;
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans">
+    <div className="min-h-screen bg-background text-foreground font-sans relative selection:bg-primary/20 selection:text-primary">
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
 
-      <main>
+      <main className="flex flex-col relative overflow-hidden">
         <Hero />
 
         {/* Product Catalog Section */}
-        <section id="katalog" className="py-16 sm:py-24 border-t border-border/60">
+        <section id="katalog" className="py-20 sm:py-24 border-t border-border/60">
           <div className="container max-w-6xl mx-auto px-4">
             
             {/* Catalog Section Header */}
-            <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-primary">
-                Katalog Pilihan
-              </span>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-foreground tracking-tight">
+            <div className="text-center max-w-2xl mx-auto mb-12 space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20">
+                <span>Katalog Pilihan</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
                 Layanan Koding & Produk Digital
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 Pilih paket yang sesuai dengan kebutuhan Anda. Transparan, terjangkau, dan bergaransi.
               </p>
             </div>
@@ -74,10 +74,10 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("all")}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   activeCategory === "all"
                     ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 <LayoutGrid className="w-4 h-4" />
@@ -90,10 +90,10 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("coding")}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   activeCategory === "coding"
                     ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 <Code2 className="w-4 h-4" />
@@ -106,10 +106,10 @@ export function App() {
               <button
                 type="button"
                 onClick={() => setActiveCategory("ai")}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   activeCategory === "ai"
                     ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-muted/70 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    : "bg-muted/50 text-muted-foreground hover:text-foreground hover:bg-muted"
                 }`}
               >
                 <Sparkles className="w-4 h-4" />
@@ -132,13 +132,13 @@ export function App() {
             </div>
 
             {/* Custom Request Banner */}
-            <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-muted/80 to-card border border-border flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div className="mt-14 p-6 sm:p-8 rounded-3xl bg-card border border-border shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
               <div className="space-y-1">
                 <h3 className="text-base sm:text-lg font-bold text-foreground">
-                  Punya Soal Tugas Khusus atau Request Fitur Unik?
+                  Punya Soal Tugas Khusus atau Request Fitur Tertentu?
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground">
-                  Jangan ragu untuk mengirimkan soal atau modul Anda untuk dinegosiasikan harga dan waktu pengerjaannya.
+                  Kirimkan file soal atau instruksi Anda untuk dinegosiasikan estimasi harga dan waktu pengerjaannya.
                 </p>
               </div>
 
@@ -146,9 +146,9 @@ export function App() {
                 href="https://wa.me/6285773301211?text=Halo%20Andreas,%20saya%20punya%20request%20tugas%20atau%20proyek%20custom%20yang%20mau%20didiskusikan."
                 target="_blank"
                 rel="noreferrer"
-                className="px-5 py-3 rounded-xl bg-foreground text-background font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity shrink-0"
+                className="px-5 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-xs sm:text-sm hover:bg-primary/90 transition-all shadow-sm shrink-0"
               >
-                Diskusi Custom via WA
+                Konsultasi Custom via WA
               </a>
             </div>
 
