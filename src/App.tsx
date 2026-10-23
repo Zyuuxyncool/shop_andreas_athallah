@@ -7,7 +7,7 @@ import { TrustGuarantees } from "./components/TrustGuarantees";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { PRODUCTS, ProductCategory, ProductItem } from "./data/products";
-import { Code2, Sparkles, LayoutGrid, Search, ArrowUpDown, X } from "lucide-react";
+import { Code2, Sparkles, LayoutGrid, Search, ArrowUpDown, X, ArrowLeft } from "lucide-react";
 
 type SortOption = "popular" | "price-asc" | "price-desc";
 
@@ -83,12 +83,26 @@ export function App() {
         {/* Clean Header Bar */}
         <div className="pt-32 pb-4 sm:pt-28 sm:pb-5 border-b border-border/60 bg-muted/20">
           <div className="container max-w-6xl mx-auto px-4">
-            <h1 className="text-xl sm:text-2xl font-bold text-foreground">
-              Toko Digital & Jasa Koding
-            </h1>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-              Penyedia lisensi digital resmi & layanan pemrograman terpercaya oleh Andreas Athallah.
-            </p>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h1 className="text-xl sm:text-2xl font-bold text-foreground">
+                  Toko Digital & Jasa Koding
+                </h1>
+                <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                  Penyedia lisensi digital resmi & layanan pemrograman terpercaya oleh Andreas Athallah.
+                </p>
+              </div>
+
+              {/* Back to Portfolio Button on the Right */}
+              <a
+                href="https://andreas-athallah.web.id"
+                className="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-border bg-card hover:bg-accent text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors shadow-xs"
+                title="Kembali ke Portofolio Pengembang"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                <span>Portofolio Utama</span>
+              </a>
+            </div>
           </div>
         </div>
 

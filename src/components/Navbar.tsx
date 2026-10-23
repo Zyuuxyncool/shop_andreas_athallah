@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, X, ArrowLeft, Moon, Sun, ShieldCheck } from "lucide-react";
+import { Search, X, Moon, Sun, ShieldCheck } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 interface NavbarProps {
@@ -91,16 +91,6 @@ export function Navbar({ theme, onToggleTheme, searchQuery, onSearchChange }: Na
 
             {/* Right Actions */}
             <div className="flex items-center gap-2 shrink-0">
-              {/* Back to Portfolio (Desktop) */}
-              <a
-                href="https://andreas-athallah.web.id"
-                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-                title="Kembali ke Portofolio Pengembang"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Portofolio</span>
-              </a>
-
               {/* Theme Toggle */}
               <button
                 type="button"
