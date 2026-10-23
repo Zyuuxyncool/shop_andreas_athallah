@@ -6,8 +6,8 @@ export function FAQ() {
 
   const faqs = [
     {
-      q: "Bagaimana cara kerja link aktivasi Google Gemini Advanced?",
-      a: "Setelah melakukan pemesanan, Anda akan menerima link aktivasi resmi. Anda cukup membuka tautan tersebut saat masuk di akun Google pribadi Anda, dan fitur Google Gemini Advanced akan langsung aktif. Anda sama sekali tidak perlu memberikan password email atau data pribadi sensitif.",
+      q: "Bagaimana cara kerja link aktivasi Google Gemini Pro 18 Bulan?",
+      a: "Setelah melakukan pemesanan, Anda akan menerima link aktivasi resmi. Anda cukup membuka tautan tersebut saat masuk di akun Google pribadi Anda, dan fitur Google Gemini Pro 18 bulan akan langsung aktif di akun Anda. Anda sama sekali tidak perlu memberikan password email atau data pribadi sensitif.",
     },
     {
       q: "Apakah tugas koding yang saya pesan dijamin bebas plagiasi?",

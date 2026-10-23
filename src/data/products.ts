@@ -16,20 +16,20 @@ export const PRODUCTS: ProductItem[] = [
   {
     id: "gemini-activation",
     category: "digital",
-    name: "Aktivasi Google Gemini Advanced (Resmi)",
-    priceTag: "Rp 35.000",
-    priceNumeric: 35000,
-    description: "Aktivasi resmi Google Gemini Advanced langsung ke akun Google pribadi via link resmi tanpa perlu memberikan password email.",
+    name: "Aktivasi Google Gemini Pro (18 Bulan)",
+    priceTag: "Rp 25.000",
+    priceNumeric: 25000,
+    description: "Akses resmi Google Gemini Pro dengan durasi panjang 18 bulan langsung ke akun Google pribadi via link resmi tanpa perlu memberikan password email.",
     features: [
+      "Masa aktif panjang 18 Bulan",
       "Aktivasi via tautan resmi langsung ke akun pribadi",
-      "Tanpa meminta password email (100% aman)",
-      "Akses model AI Gemini 1.5 Pro & Ultra",
+      "Tanpa meminta password email (100% aman & terpercaya)",
+      "Akses model AI Gemini Pro untuk koding, tugas, & riset",
       "Garansi penuh selama masa aktif",
-      "Dipandu sampai berhasil aktif"
+      "Dipandu langsung sampai berhasil aktif"
     ],
     variants: [
-      { name: "Paket 1 Bulan", price: 35000, priceLabel: "Rp 35.000" },
-      { name: "Paket 2 Bulan", price: 65000, priceLabel: "Rp 65.000" },
+      { name: "Paket 18 Bulan (Resmi)", price: 25000, priceLabel: "Rp 25.000" },
     ],
   },
   {
