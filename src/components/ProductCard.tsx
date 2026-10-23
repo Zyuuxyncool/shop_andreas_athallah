@@ -1,5 +1,7 @@
-import { Sparkles, Code2, ArrowUpRight, Check } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Sparkles, Code2, ArrowUpRight, Check, Package } from "lucide-react";
 import { ProductItem } from "../data/products";
+import { fetchPublicGeminiStockCount } from "../services/stockService";
 
 interface ProductCardProps {
   product: ProductItem;
@@ -8,6 +10,21 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onSelect }: ProductCardProps) {
   const isDigital = product.category === "digital";
+  const isGemini = product.id === "gemini-activation";
+
+  const [geminiStock, setGeminiStock] = useState<number>(0);
+
+  useEffect(() => {
+    if (!isGemini) return;
+    fetchPublicGeminiStockCount().then((count) => setGeminiStock(count));
+
+    const update = () => {
+      fetchPublicGeminiStockCount().then((count) => setGeminiStock(count));
+    };
+
+    window.addEventListener("gemini-stock-updated", update);
+    return () => window.removeEventListener("gemini-stock-updated", update);
+  }, [isGemini]);
 
   return (
     <div className="flex flex-col justify-between p-5 sm:p-6 rounded-2xl bg-card border border-border shadow-xs hover:border-primary/50 hover:shadow-md transition-all duration-200">
@@ -20,9 +37,16 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
             <span>{isDigital ? "Produk Digital" : "Jasa Koding"}</span>
           </span>
 
-          <span className="text-xs font-mono font-medium text-muted-foreground">
-            {isDigital ? "Pengiriman Instan" : "Pengerjaan Cepat"}
-          </span>
+          {isGemini ? (
+            <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+              <Package className="w-3 h-3" />
+              <span>Stok: {geminiStock} Link</span>
+            </span>
+          ) : (
+            <span className="text-xs font-mono font-medium text-muted-foreground">
+              {isDigital ? "Pengiriman Instan" : "Pengerjaan Cepat"}
+            </span>
+          )}
         </div>
 
         {/* Product Title */}
@@ -30,7 +54,7 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
           {product.name}
         </h3>
 
-        {/* Clean Price (Single Price Only, No Crowded Discounts) */}
+        {/* Clean Price (Single Price Only) */}
         <div className="py-2.5 px-3.5 rounded-xl bg-muted/40 border border-border/80 flex items-center justify-between">
           <span className="text-xs text-muted-foreground">Harga:</span>
           <span className="text-lg sm:text-xl font-black text-primary font-mono tracking-tight">
@@ -73,9 +97,10 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         <button
           type="button"
           onClick={() => onSelect(product)}
-          className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm min-h-[44px]"
+          disabled={isGemini && geminiStock <= 0}
+          className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-all duration-200 shadow-sm min-h-[44px]"
         >
-          <span>Beli Sekarang</span>
+          <span>{isGemini && geminiStock <= 0 ? "Stok Habis" : "Beli Sekarang"}</span>
           <ArrowUpRight className="w-4 h-4" />
         </button>
       </div>

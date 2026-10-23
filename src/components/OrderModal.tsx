@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 import { ProductItem } from "../data/products";
+import { submitCustomerPurchase, fetchPublicGeminiStockCount } from "../services/stockService";
 
 interface OrderModalProps {
   product: ProductItem | null;
@@ -70,15 +71,43 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleProceedOrder = (e: React.FormEvent) => {
+  const [stockError, setStockError] = useState("");
+
+  const handleProceedOrder = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStockError("");
+
+    // Check Gemini stock if applicable
+    if (product.id === "gemini-activation") {
+      const available = await fetchPublicGeminiStockCount();
+      if (available < quantity) {
+        setStockError(`Maaf, sisa stok Gemini hanya tersedia ${available} link.`);
+        return;
+      }
+    }
 
     if (paymentMethod === "midtrans") {
       // Transition to Midtrans Snap Payment Screen
       setViewStep("midtrans_screen");
     } else {
-      // WhatsApp Manual Order
+      // WhatsApp Manual Order: Deduct stock and transfer to riwayat_pembelian.json via secure server API
+      if (product.id === "gemini-activation") {
+        const res = await submitCustomerPurchase({
+          orderId: invoiceId,
+          customerName: customerName || "Anonim",
+          customerPhone: customerPhone || "-",
+          quantity,
+          paymentMethod: "WhatsApp Manual",
+          price: totalPrice,
+        });
+        if (!res.success) {
+          setStockError(res.error || "Gagal memproses stok.");
+          return;
+        }
+      }
+
       let messageText = `*Halo Andreas, saya ingin order:*\n\n`;
+      messageText += `*No. Invoice:* ${invoiceId}\n`;
       messageText += `*Produk:* ${product.name}\n`;
       if (selectedVariant) {
         messageText += `*Paket:* ${selectedVariant.name}\n`;
@@ -89,7 +118,8 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
       messageText += `*Nama Pemesan:* ${customerName || "-"}\n`;
       if (customerPhone) messageText += `*No. Kontak:* ${customerPhone}\n`;
       if (notes) messageText += `*Catatan:* ${notes}\n`;
-      messageText += `\nMohon instruksi pembayaran & pengiriman. Terima kasih!`;
+
+      messageText += `\nMohon instruksi nomor rekening / QRIS pembayaran & pengiriman aktivasi. Terima kasih!`;
 
       const encoded = encodeURIComponent(messageText);
       window.open(`https://wa.me/6285773301211?text=${encoded}`, "_blank");
@@ -97,7 +127,18 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
     }
   };
 
-  const handleSendPaymentConfirmationToWhatsApp = () => {
+  const handleSendPaymentConfirmationToWhatsApp = async () => {
+    if (product.id === "gemini-activation") {
+      await submitCustomerPurchase({
+        orderId: invoiceId,
+        customerName: customerName || "Anonim",
+        customerPhone: customerPhone || "-",
+        quantity,
+        paymentMethod: `Midtrans (${midtransSubMethod.toUpperCase()})`,
+        price: totalPrice,
+      });
+    }
+
     let msg = `*Halo Andreas, saya sudah melakukan pembayaran via Midtrans:*\n\n`;
     msg += `*No. Invoice:* ${invoiceId}\n`;
     msg += `*Produk:* ${product.name}\n`;
@@ -107,7 +148,8 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
     msg += `*Metode:* Midtrans (${midtransSubMethod.toUpperCase()})\n`;
     msg += `*Nama:* ${customerName}\n`;
     if (notes) msg += `*Catatan:* ${notes}\n`;
-    msg += `\nMohon dicek dan diproses link/kodingannya. Terima kasih!`;
+
+    msg += `\nMohon verifikasi pembayaran dan dikirimkan link/kodingannya. Terima kasih!`;
 
     const encoded = encodeURIComponent(msg);
     window.open(`https://wa.me/6285773301211?text=${encoded}`, "_blank");
@@ -166,6 +208,13 @@ export function OrderModal({ product, onClose }: OrderModalProps) {
 
               {/* Form Body (Scrolls together with the modal card) */}
               <form onSubmit={handleProceedOrder} className="p-5 sm:p-6 space-y-5">
+                
+                {stockError && (
+                  <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-xs font-semibold flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{stockError}</span>
+                  </div>
+                )}
               
               {/* Variant Selector (if product has variants) */}
               {product.variants && product.variants.length > 0 && (

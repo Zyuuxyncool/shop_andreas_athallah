@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Navbar } from "./components/Navbar";
 import { ProductCard } from "./components/ProductCard";
 import { OrderModal } from "./components/OrderModal";
+import { AdminPage } from "./components/AdminPage";
 import { HowToOrder } from "./components/HowToOrder";
 import { TrustGuarantees } from "./components/TrustGuarantees";
 import { FAQ } from "./components/FAQ";
@@ -18,7 +19,22 @@ const SORT_OPTIONS: SelectOption<SortOption>[] = [
   { value: "price-desc", label: "Harga: Tertinggi" },
 ];
 
+function checkIsAdminRoute(): boolean {
+  if (typeof window === "undefined") return false;
+  const path = window.location.pathname.toLowerCase();
+  const hash = window.location.hash.toLowerCase();
+  return (
+    path === "/login" ||
+    path === "/admin" ||
+    hash === "#/admin" ||
+    hash === "#/login" ||
+    hash.startsWith("#/admin") ||
+    hash.startsWith("#/login")
+  );
+}
+
 export function App() {
+  const [isAdminRoute, setIsAdminRoute] = useState(checkIsAdminRoute);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("shop-theme");
@@ -32,6 +48,23 @@ export function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setIsAdminRoute(checkIsAdminRoute());
+    };
+    window.addEventListener("popstate", handleLocationChange);
+    window.addEventListener("hashchange", handleLocationChange);
+    return () => {
+      window.removeEventListener("popstate", handleLocationChange);
+      window.removeEventListener("hashchange", handleLocationChange);
+    };
+  }, []);
+
+  const navigateToShop = () => {
+    window.history.pushState({}, "", "/");
+    setIsAdminRoute(false);
+  };
 
   useEffect(() => {
     const root = document.documentElement;
@@ -77,6 +110,14 @@ export function App() {
   const digitalCount = PRODUCTS.filter((p) => p.category === "digital").length;
   const codingCount = PRODUCTS.filter((p) => p.category === "coding").length;
 
+  if (isAdminRoute) {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-sans relative selection:bg-primary/20 selection:text-primary">
+        <AdminPage onBackToShop={navigateToShop} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans relative selection:bg-primary/20 selection:text-primary">
       <Navbar
@@ -100,15 +141,17 @@ export function App() {
                 </p>
               </div>
 
-              {/* Back to Portfolio Button on the Right */}
-              <a
-                href="https://andreas-athallah.web.id"
-                className="self-start sm:self-auto inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-border bg-card hover:bg-accent text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors shadow-xs"
-                title="Kembali ke Portofolio Pengembang"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Portofolio Utama</span>
-              </a>
+              <div className="flex items-center gap-2 self-start sm:self-auto">
+                {/* Back to Portfolio Button on the Right */}
+                <a
+                  href="https://andreas-athallah.web.id"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border border-border bg-card hover:bg-accent text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors shadow-xs"
+                  title="Kembali ke Portofolio Pengembang"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Portofolio Utama</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

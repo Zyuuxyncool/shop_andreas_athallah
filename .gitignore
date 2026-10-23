@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Confidential Private Data (Stok & Riwayat)
+private_data/
+*.private.json
