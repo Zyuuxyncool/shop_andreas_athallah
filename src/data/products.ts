@@ -72,21 +72,22 @@ export const PRODUCTS: ProductItem[] = [
   {
     id: "joki-tugas-dasar",
     category: "coding",
-    name: "Joki Tugas Koding SMK RPL & Kuliah",
-    priceTag: "Rp 45.000",
-    priceNumeric: 45000,
-    description: "Jasa pengerjaan tugas koding sekolah SMK RPL dan praktikum kuliah. Dikerjakan dengan kode bersih, bebas plagiasi, dan ada penjelasan logika program.",
+    name: "Joki Tugas Koding SMK RPL & Kuliah (Web Dasar & Form CRUD)",
+    priceTag: "Mulai Rp 30.000",
+    priceNumeric: 30000,
+    description: "Jasa pengerjaan tugas koding web dasar, pembuatan form input, dan sistem CRUD (Create, Read, Update, Delete) untuk siswa SMK RPL dan mahasiswa. Dikerjakan dengan kode bersih, bebas plagiasi, dan ada penjelasan alur logika.",
     features: [
       "Kode orisinal sesuai instruksi guru/dosen",
-      "Diberi komentar penjelasan alur logika di setiap fungsi",
+      "Pengerjaan form input, tabel data, & logika CRUD",
+      "Diberi komentar penjelasan alur kode di setiap fungsi",
       "Bebas plagiasi & anti-deteksi kesamaan kode",
-      "Garansi revisi jika ada poin tugas yang perlu disesuaikan",
-      "Panduan cara menjalankan kodingan di laptop Anda"
+      "Garansi revisi jika ada instruksi yang perlu disesuaikan",
+      "Panduan cara menjalankan kodingan di localhost"
     ],
-    techStack: ["HTML & CSS", "JavaScript", "PHP Dasar", "Java", "C++", "Python", "MySQL"],
+    techStack: ["HTML & CSS", "JavaScript", "PHP Dasar", "MySQL", "Bootstrap"],
     variants: [
-      { name: "Tugas Algoritma / Console Dasar", price: 45000, priceLabel: "Rp 45.000" },
-      { name: "Tugas Web Dasar & Form CRUD", price: 75000, priceLabel: "Rp 75.000" },
+      { name: "Web Dasar & Form Input", price: 30000, priceLabel: "Rp 30.000" },
+      { name: "Web Form CRUD + Database MySQL", price: 50000, priceLabel: "Rp 50.000" },
     ],
   },
   {
