@@ -81,7 +81,7 @@ export function App() {
 
       <main className="flex flex-col relative overflow-hidden">
         {/* Clean Header Bar */}
-        <div className="pt-24 pb-4 sm:pt-28 sm:pb-5 border-b border-border/60 bg-muted/20">
+        <div className="pt-32 pb-4 sm:pt-28 sm:pb-5 border-b border-border/60 bg-muted/20">
           <div className="container max-w-6xl mx-auto px-4">
             <h1 className="text-xl sm:text-2xl font-bold text-foreground">
               Toko Digital & Jasa Koding
