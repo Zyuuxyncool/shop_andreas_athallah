@@ -1,100 +1,115 @@
-import { ArrowDown, Code2, Sparkles, ShieldCheck, Zap } from "lucide-react";
+import { Sparkles, ShieldCheck, Zap, MessageCircle, Star, Award, CheckCircle2 } from "lucide-react";
 import { SiWhatsapp } from "react-icons/si";
 
 export function Hero() {
   return (
-    <section className="pt-28 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden bg-grid-pattern">
-      {/* Background Subtle Gradient */}
-      <div className="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-        <div className="w-[500px] h-[300px] bg-primary/10 rounded-full blur-[100px] -top-16 opacity-60" />
-      </div>
-
-      <div className="container max-w-5xl mx-auto px-4 text-center space-y-6">
+    <section className="pt-28 pb-6 sm:pt-36 sm:pb-8">
+      <div className="container max-w-6xl mx-auto px-4">
         
-        {/* Live Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span>Toko Digital Resmi Andreas Athallah</span>
-        </div>
+        {/* Shopee-style Seller Profile & Promotion Card */}
+        <div className="p-5 sm:p-7 rounded-3xl bg-card border border-border shadow-xs space-y-6">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-border">
+            
+            {/* Store Profile Info */}
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-primary to-blue-600 text-white font-extrabold flex items-center justify-center text-xl sm:text-2xl shadow-md">
+                  AA
+                </div>
+                <span className="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500 text-slate-950 uppercase tracking-wider">
+                  Star+
+                </span>
+              </div>
 
-        {/* Main Headline */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-[1.12] max-w-3xl mx-auto">
-          Jasa Koding Terpercaya & <br />
-          <span className="text-primary">
-            Link Aktivasi Gemini
-          </span>
-        </h1>
-
-        {/* Sub-headline */}
-        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Bantu selesaikan tugas koding praktikum dan tugas akhir dengan kode bersih, bebas plagiasi, dan ada penjelasan logika program. Tersedia juga tautan resmi aktivasi Google Gemini Advanced tanpa perlu berbagi password.
-        </p>
-
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
-          <a
-            href="#katalog"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow min-h-[44px]"
-          >
-            <span>Lihat Paket & Harga</span>
-            <ArrowDown className="w-4 h-4" />
-          </a>
-
-          <a
-            href="https://wa.me/6285773301211?text=Halo%20Andreas,%20saya%20mau%20konsultasi%20tugas%20koding%20atau%20pembelian%20link%20Gemini."
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm border border-border bg-card hover:bg-accent text-foreground transition-all duration-200 shadow-xs hover:border-slate-300 dark:hover:border-slate-600 min-h-[44px]"
-          >
-            <SiWhatsapp className="w-4 h-4 text-emerald-500" />
-            <span>Konsultasi via WhatsApp</span>
-          </a>
-        </div>
-
-        {/* 4 Feature Highlights */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-8 max-w-4xl mx-auto text-left">
-          <div className="p-4 rounded-2xl bg-card border border-border shadow-xs space-y-1.5">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
-              <Zap className="w-4 h-4" />
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <h1 className="text-lg sm:text-2xl font-extrabold text-foreground tracking-tight">
+                    Andreas Digital Store
+                  </h1>
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Online</span>
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Penyedia Resmi Produk Digital, Akses Akun AI, & Jasa Pengerjaan Koding Terpercaya
+                </p>
+                <div className="flex items-center gap-2 pt-1 text-xs text-muted-foreground font-mono">
+                  <span>📍 Sidoarjo, Jawa Timur</span>
+                  <span>•</span>
+                  <span>Bergabung: 2024</span>
+                </div>
+              </div>
             </div>
-            <h2 className="text-xs sm:text-sm font-bold text-foreground">Pengerjaan Cepat</h2>
-            <p className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-              Bisa pengerjaan ekspres same-day untuk tugas dengan deadline mendesak.
-            </p>
+
+            {/* Shopee Store Stats */}
+            <div className="grid grid-cols-3 gap-3 sm:gap-6 w-full lg:w-auto bg-muted/40 p-3.5 sm:p-4 rounded-2xl border border-border/80">
+              <div className="text-center sm:text-left">
+                <span className="text-[11px] text-muted-foreground block flex items-center justify-center sm:justify-start gap-1">
+                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <span>Penilaian</span>
+                </span>
+                <span className="text-sm sm:text-base font-bold text-foreground font-mono">
+                  4.9 <span className="text-xs text-muted-foreground font-normal">(280+)</span>
+                </span>
+              </div>
+
+              <div className="text-center sm:text-left border-x border-border/60 px-3 sm:px-4">
+                <span className="text-[11px] text-muted-foreground block flex items-center justify-center sm:justify-start gap-1">
+                  <MessageCircle className="w-3.5 h-3.5 text-primary" />
+                  <span>Respon Chat</span>
+                </span>
+                <span className="text-sm sm:text-base font-bold text-foreground font-mono">
+                  100% <span className="text-xs text-muted-foreground font-normal">(Menit)</span>
+                </span>
+              </div>
+
+              <div className="text-center sm:text-left">
+                <span className="text-[11px] text-muted-foreground block flex items-center justify-center sm:justify-start gap-1">
+                  <Award className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>Garansi</span>
+                </span>
+                <span className="text-sm sm:text-base font-bold text-foreground font-mono">
+                  100% Aman
+                </span>
+              </div>
+            </div>
+
           </div>
 
-          <div className="p-4 rounded-2xl bg-card border border-border shadow-xs space-y-1.5">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
-              <Code2 className="w-4 h-4" />
+          {/* Shopee Store Highlights Banner */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="p-3.5 rounded-2xl bg-muted/30 border border-border flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <Zap className="w-4 h-4" />
+              </div>
+              <div className="text-xs">
+                <span className="font-bold text-foreground block">Proses Cepat & Instan</span>
+                <span className="text-muted-foreground">Link produk digital dikirim 1-5 menit</span>
+              </div>
             </div>
-            <h2 className="text-xs sm:text-sm font-bold text-foreground">Ada Penjelasan Kode</h2>
-            <p className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-              Dilengkapi komentar di kodingan agar siap saat ditanya guru atau dosen.
-            </p>
+
+            <div className="p-3.5 rounded-2xl bg-muted/30 border border-border flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-4 h-4" />
+              </div>
+              <div className="text-xs">
+                <span className="font-bold text-foreground block">100% Bebas Plagiasi</span>
+                <span className="text-muted-foreground">Kodingan tugas original & ada penjelasan</span>
+              </div>
+            </div>
+
+            <div className="p-3.5 rounded-2xl bg-muted/30 border border-border flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-4 h-4" />
+              </div>
+              <div className="text-xs">
+                <span className="font-bold text-foreground block">Garansi Revisi Tuntas</span>
+                <span className="text-muted-foreground">Didampingi sampai tugas berhasil dievaluasi</span>
+              </div>
+            </div>
           </div>
 
-          <div className="p-4 rounded-2xl bg-card border border-border shadow-xs space-y-1.5">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
-              <Sparkles className="w-4 h-4" />
-            </div>
-            <h2 className="text-xs sm:text-sm font-bold text-foreground">Link Gemini Resmi</h2>
-            <p className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-              Aktivasi instan via tautan langsung tanpa perlu memberikan password email.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-card border border-border shadow-xs space-y-1.5">
-            <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-2">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <h2 className="text-xs sm:text-sm font-bold text-foreground">Garansi Revisi</h2>
-            <p className="text-[11px] sm:text-xs text-muted-foreground leading-normal">
-              Garansi revisi jika ada kekurangan serta kerahasiaan tugas 100% aman.
-            </p>
-          </div>
         </div>
 
       </div>
